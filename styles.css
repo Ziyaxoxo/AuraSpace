@@ -10,6 +10,7 @@ body {
   min-height: 100vh;
   color: #333;
   line-height: 1.6;
+  padding-top: 80px; /* Account for fixed header */
 }
 
 .container {
@@ -23,57 +24,92 @@ body {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 24px 0;
-  position: sticky;
+  padding: 16px 0;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease, background 0.3s ease;
+  transform: translateY(0);
+}
+
+.header.hidden {
+  transform: translateY(-100%);
+}
+
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(25px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  padding: 12px 0;
 }
 
 .header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.3s ease;
 }
 
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  transition: all 0.3s ease;
 }
 
 .logo {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.header.scrolled .logo {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
 }
 
 .nav-brand h1 {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 800;
   background: linear-gradient(135deg, #667eea, #764ba2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled .nav-brand h1 {
+  font-size: 24px;
 }
 
 .tagline {
   color: #666;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled .tagline {
+  font-size: 13px;
+  opacity: 0.8;
 }
 
 /* Main Content */
 .main-content {
-  padding: 60px 0;
+  padding: 40px 0 60px 0;
 }
 
 .welcome-section {
@@ -755,29 +791,64 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .cards-grid {
     grid-template-columns: 1fr;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .thrive-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   }
 }
 
 @media (max-width: 768px) {
+  body {
+    padding-top: 140px; /* More space for mobile header */
+  }
+
   .container {
     padding: 0 16px;
   }
 
+  .header {
+    padding: 12px 0;
+  }
+
+  .header.scrolled {
+    padding: 8px 0;
+  }
+
   .header .container {
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
     text-align: center;
+  }
+
+  .nav-brand {
+    gap: 10px;
+  }
+
+  .nav-brand h1 {
+    font-size: 24px;
+  }
+
+  .header.scrolled .nav-brand h1 {
+    font-size: 20px;
+  }
+
+  .tagline {
+    font-size: 13px;
+  }
+
+  .header.scrolled .tagline {
+    font-size: 12px;
   }
 
   .welcome-title {
     font-size: 2.5rem;
+    margin-top: 20px;
   }
 
   .welcome-subtitle {
@@ -795,7 +866,7 @@ body {
   }
 
   .card {
-    padding: 24px;
+    padding: 20px;
   }
 
   .reminder-form {
@@ -825,6 +896,147 @@ body {
 
   .timer-controls .btn {
     width: 100%;
+  }
+
+  .chat-container {
+    height: 350px;
+  }
+
+  .timer-text {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-top: 120px;
+  }
+
+  .header .container {
+    gap: 6px;
+  }
+
+  .nav-brand h1 {
+    font-size: 22px;
+  }
+
+  .header.scrolled .nav-brand h1 {
+    font-size: 18px;
+  }
+
+  .logo {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .header.scrolled .logo {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .welcome-title {
+    font-size: 2rem;
+  }
+
+  .welcome-subtitle {
+    font-size: 1rem;
+  }
+
+  .tab-btn {
+    width: 200px;
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .card-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .timer-text {
+    font-size: 2.5rem;
+  }
+
+  .water-amount {
+    font-size: 2.5rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .welcome-title {
+    font-size: 1.8rem;
+  }
+
+  .tab-btn {
+    width: 180px;
+    padding: 12px 20px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .timer-text {
+    font-size: 2.2rem;
+  }
+
+  .water-amount {
+    font-size: 2.2rem;
+  }
+}
+
+/* Tablet specific styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  body {
+    padding-top: 90px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .thrive-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .welcome-title {
+    font-size: 3rem;
+  }
+
+  .tab-btn {
+    min-width: 200px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1600px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  }
+
+  .thrive-grid {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   }
 }
 
