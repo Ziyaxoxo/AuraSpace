@@ -102,7 +102,6 @@ let isBreak = false
 let sessionsCompleted = 0
 let waterIntake = 0
 let exercises = []
-const reminders = []
 
 // DOM Elements
 const timerDisplay = document.getElementById("timer-display")
@@ -120,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeFitnessTracker()
   initializeWaterTracker()
   initializeCalorieCalculator()
-  initializeHealthReminders()
   requestNotificationPermission()
 })
 
@@ -485,78 +483,6 @@ function getCalorieBotResponse(message) {
   }
 
   return "I couldn't find that food in my database. Try common foods like apple, banana, chicken breast, rice, bread, egg, milk, or pasta."
-}
-
-// Health Reminders
-function initializeHealthReminders() {
-  document.getElementById("add-reminder").addEventListener("click", addReminder)
-
-  // Add default reminder
-  reminders.push({
-    id: 1,
-    type: "medication",
-    title: "Vitamin D",
-    time: "08:00",
-    frequency: "Daily",
-    active: true,
-  })
-
-  updateRemindersDisplay()
-}
-
-function addReminder() {
-  const type = document.getElementById("reminder-type").value
-  const title = document.getElementById("reminder-title").value.trim()
-  const time = document.getElementById("reminder-time").value
-
-  if (!title || !time) return
-
-  const reminder = {
-    id: Date.now(),
-    type,
-    title,
-    time,
-    frequency: "Daily",
-    active: true,
-  }
-
-  reminders.push(reminder)
-  updateRemindersDisplay()
-
-  document.getElementById("reminder-title").value = ""
-  document.getElementById("reminder-time").value = ""
-}
-
-function updateRemindersDisplay() {
-  const remindersList = document.getElementById("reminders-list")
-
-  remindersList.innerHTML = reminders
-    .map(
-      (reminder) => `
-        <div class="reminder-item">
-            <div class="reminder-info">
-                <div class="reminder-badge ${reminder.type}">
-                    <i class="fas fa-${reminder.type === "medication" ? "pills" : reminder.type === "appointment" ? "calendar" : "heart"}"></i>
-                    ${reminder.type.charAt(0).toUpperCase() + reminder.type.slice(1)}
-                </div>
-                <div class="reminder-title">${reminder.title}</div>
-                <div class="reminder-time">${reminder.time} - ${reminder.frequency}</div>
-            </div>
-            <button class="btn btn-small btn-success" onclick="toggleReminder(${reminder.id})">
-                <i class="fas fa-check"></i>
-            </button>
-        </div>
-    `,
-    )
-    .join("")
-}
-
-function toggleReminder(id) {
-  const reminder = reminders.find((r) => r.id === id)
-  if (reminder) {
-    reminder.active = !reminder.active
-    showNotification("Reminder Updated", `${reminder.title} marked as ${reminder.active ? "active" : "completed"}`)
-  }
 }
 
 // Notifications
