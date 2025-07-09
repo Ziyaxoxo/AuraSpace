@@ -551,7 +551,7 @@ body {
 .input-group {
   display: flex;
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .input-group input,
@@ -699,97 +699,6 @@ body {
   font-weight: 500;
 }
 
-/* Health Reminders */
-.reminder-form {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr auto;
-  gap: 16px;
-  margin-bottom: 28px;
-  align-items: end;
-}
-
-.reminder-form select,
-.reminder-form input {
-  padding: 14px 20px;
-  border: 2px solid #f0f0f0;
-  border-radius: 12px;
-  font-size: 15px;
-  outline: none;
-  transition: all 0.3s ease;
-  background: #fafbfc;
-}
-
-.reminder-form select:focus,
-.reminder-form input:focus {
-  border-color: #667eea;
-  background: white;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.reminders-list {
-  max-height: 350px;
-  overflow-y: auto;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.reminder-item {
-  background: white;
-  padding: 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background 0.2s ease;
-}
-
-.reminder-item:hover {
-  background: #fafbfc;
-}
-
-.reminder-item:last-child {
-  border-bottom: none;
-}
-
-.reminder-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.reminder-badge.medication {
-  background: rgba(25, 118, 210, 0.1);
-  color: #1976d2;
-}
-
-.reminder-badge.appointment {
-  background: rgba(56, 142, 60, 0.1);
-  color: #388e3c;
-}
-
-.reminder-badge.checkup {
-  background: rgba(123, 31, 162, 0.1);
-  color: #7b1fa2;
-}
-
-.reminder-title {
-  font-weight: 600;
-  margin-bottom: 6px;
-  font-size: 16px;
-  color: #333;
-}
-
-.reminder-time {
-  font-size: 14px;
-  color: #666;
-  font-weight: 500;
-}
-
 /* Responsive Design */
 @media (max-width: 1200px) {
   .cards-grid {
@@ -879,9 +788,8 @@ body {
     padding: 20px;
   }
 
-  .reminder-form {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  @media (max-width: 768px) {
+    /* Removed reminder form styles */
   }
 
   .input-group {
@@ -1143,14 +1051,14 @@ body {
 }
 
 .input-group {
-  display: grid;
-  grid-template-columns: 2fr 1fr auto;
+  display: flex;
   gap: 16px;
   margin-bottom: 28px;
-  align-items: center;
+  align-items: stretch;
 }
 
 .input-group input {
+  flex: 1;
   padding: 16px 20px;
   border: 2px solid #f0f2f5;
   border-radius: 16px;
@@ -1159,18 +1067,16 @@ body {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: #fafbfc;
   font-weight: 500;
+  min-width: 0;
 }
 
-.input-group input:focus {
-  border-color: #667eea;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.08);
-  transform: translateY(-1px);
+.input-group input:first-child {
+  flex: 2;
 }
 
-.input-group input::placeholder {
-  color: #9ca3af;
-  font-weight: 400;
+.input-group input:nth-child(2) {
+  flex: 1;
+  max-width: 120px;
 }
 
 .input-group .btn {
@@ -1178,6 +1084,7 @@ body {
   white-space: nowrap;
   font-weight: 700;
   border-radius: 16px;
+  flex-shrink: 0;
 }
 
 /* Enhanced Exercise List */
@@ -1440,4 +1347,9 @@ body {
   50% {
     opacity: 0.8;
   }
+}
+
+.cream-white {
+  color: #fef7ed !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
