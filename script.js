@@ -412,6 +412,22 @@ function updateWaterDisplay() {
   document.getElementById("water-amount").textContent = `${waterIntake}ml`
   document.getElementById("water-percentage").textContent = `${percentage}%`
   document.getElementById("water-progress").style.width = `${Math.min(percentage, 100)}%`
+
+  // Add success styling when goal is reached
+  const waterDisplay = document.querySelector(".water-display")
+  if (percentage >= 100) {
+    waterDisplay.classList.add("goal-achieved")
+  } else {
+    waterDisplay.classList.remove("goal-achieved")
+  }
+
+  // Add success animation
+  if (waterIntake > 0 && waterIntake % 500 === 0) {
+    waterDisplay.classList.add("water-success")
+    setTimeout(() => {
+      waterDisplay.classList.remove("water-success")
+    }, 600)
+  }
 }
 
 // Calorie Calculator
