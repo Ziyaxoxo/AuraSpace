@@ -121,10 +121,8 @@ body {
 .welcome-title {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
-  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #fef7ed;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 24px;
   letter-spacing: -1px;
   line-height: 1.1;
@@ -706,7 +704,6 @@ body {
     max-width: 900px;
     margin: 0 auto;
   }
-
   .thrive-grid {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     max-width: 1000px;
@@ -726,100 +723,78 @@ body {
   body {
     padding-top: 140px; /* More space for mobile header */
   }
-
   .container {
     padding: 0 16px;
   }
-
   .header {
     padding: 12px 0;
   }
-
   .header.scrolled {
     padding: 8px 0;
   }
-
   .header .container {
     flex-direction: column;
     gap: 8px;
     text-align: center;
   }
-
   .nav-brand {
     gap: 10px;
   }
-
   .nav-brand h1 {
     font-size: 24px;
   }
-
   .header.scrolled .nav-brand h1 {
     font-size: 20px;
   }
-
   .tagline {
     font-size: 13px;
   }
-
   .header.scrolled .tagline {
     font-size: 12px;
   }
-
   .welcome-title {
     font-size: 2.5rem;
     margin-top: 20px;
   }
-
   .welcome-subtitle {
     font-size: 1.1rem;
   }
-
   .tab-navigation {
     flex-direction: column;
     align-items: center;
     gap: 16px;
   }
-
   .tab-btn {
     width: 250px;
   }
-
   .card {
     padding: 20px;
   }
-
   @media (max-width: 768px) {
     /* Removed reminder form styles */
   }
-
   .input-group {
     flex-direction: column;
     gap: 12px;
   }
-
   .water-controls {
     flex-direction: column;
     gap: 12px;
   }
-
   .stats-row {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-
   .timer-controls {
     flex-direction: column;
     gap: 12px;
   }
-
   .timer-controls .btn {
     width: 100%;
   }
-
   .chat-container {
     height: 350px;
   }
-
   .timer-text {
     font-size: 2.8rem;
   }
@@ -829,61 +804,48 @@ body {
   body {
     padding-top: 120px;
   }
-
   .header .container {
     gap: 6px;
   }
-
   .nav-brand h1 {
     font-size: 22px;
   }
-
   .header.scrolled .nav-brand h1 {
     font-size: 18px;
   }
-
   .logo {
     width: 36px;
     height: 36px;
     font-size: 18px;
   }
-
   .header.scrolled .logo {
     width: 32px;
     height: 32px;
     font-size: 16px;
   }
-
   .welcome-title {
     font-size: 2rem;
   }
-
   .welcome-subtitle {
     font-size: 1rem;
   }
-
   .tab-btn {
     width: 200px;
     padding: 14px 24px;
     font-size: 14px;
   }
-
   .card {
     padding: 16px;
   }
-
   .card-header h3 {
     font-size: 1.3rem;
   }
-
   .timer-text {
     font-size: 2.5rem;
   }
-
   .water-amount {
     font-size: 2.5rem;
   }
-
   .stat-number {
     font-size: 2rem;
   }
@@ -893,24 +855,19 @@ body {
   .container {
     padding: 0 12px;
   }
-
   .welcome-title {
     font-size: 1.8rem;
   }
-
   .tab-btn {
     width: 180px;
     padding: 12px 20px;
   }
-
   .card {
     padding: 14px;
   }
-
   .timer-text {
     font-size: 2.2rem;
   }
-
   .water-amount {
     font-size: 2.2rem;
   }
@@ -921,11 +878,9 @@ body {
   .container {
     max-width: 1600px;
   }
-
   .cards-grid {
     grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
   }
-
   .thrive-grid {
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   }
