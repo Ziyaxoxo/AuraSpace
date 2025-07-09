@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraSpace - Your Academic & Wellness Sanctuary</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h1>AuraSpace</h1>
+            </div>
+            <p class="tagline">Your Academic & Personal Wellness Sanctuary</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h2 class="welcome-title">Welcome to AuraSpace</h2>
+                <p class="welcome-subtitle">Your personal sanctuary for academic excellence and holistic wellness. Create your perfect aura of productivity and well-being.</p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tab-navigation">
+                <button class="tab-btn active" data-tab="study">
+                    <i class="fas fa-book-open"></i>
+                    Study Lounge
+                </button>
+                <button class="tab-btn" data-tab="thrive">
+                    <i class="fas fa-heart"></i>
+                    Thrive Space
+                </button>
+            </div>
+
+            <!-- Study Lounge Tab -->
+            <div id="study" class="tab-content active">
+                <div class="cards-grid">
+                    <!-- Pomodoro Timer Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-clock"></i> Pomodoro Timer</h3>
+                            <p>Stay focused with the proven Pomodoro Technique</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="timer-display">
+                                <div class="timer-circle">
+                                    <div class="timer-text" id="timer-display">25:00</div>
+                                    <div class="timer-status" id="timer-status">Focus Time</div>
+                                </div>
+                                <div class="progress-ring">
+                                    <svg class="progress-svg" width="200" height="200">
+                                        <circle class="progress-bg" cx="100" cy="100" r="90"></circle>
+                                        <circle class="progress-bar" cx="100" cy="100" r="90" id="progress-circle"></circle>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="timer-controls">
+                                <button class="btn btn-primary" id="timer-toggle">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="btn btn-secondary" id="timer-reset">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                            </div>
+                            <div class="timer-stats">
+                                <span>Sessions completed: <strong id="sessions-count">0</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Study Assistant Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-comments"></i> Study Assistant</h3>
+                            <p>Get reminders, updates, and study tips</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="chat-container">
+                                <div class="chat-messages" id="study-chat">
+                                    <div class="message bot-message">
+                                        <div class="message-avatar bot-avatar">
+                                            <i class="fas fa-robot"></i>
+                                        </div>
+                                        <div class="message-content">
+                                            Welcome to your Study Sanctuary! I'm your personal study assistant here at AuraSpace. How can I help you create the perfect study aura today?
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chat-input">
+                                    <input type="text" id="study-input" placeholder="Ask for study tips, reminders, or motivation...">
+                                    <button class="btn btn-primary" id="study-send">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thrive Space Tab -->
+            <div id="thrive" class="tab-content">
+                <div class="cards-grid thrive-grid">
+                    <!-- Fitness Tracker Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-dumbbell"></i> Fitness Tracker</h3>
+                            <p>Log your daily activities and workouts</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="stats-row">
+                                <div class="stat-card">
+                                    <div class="stat-number" id="total-calories">0</div>
+                                    <div class="stat-label">Calories Burned</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="total-minutes">0</div>
+                                    <div class="stat-label">Minutes Active</div>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="exercise-name" placeholder="Exercise (e.g., Running, Yoga)">
+                                <input type="number" id="exercise-duration" placeholder="Duration (minutes)">
+                                <button class="btn btn-primary" id="add-exercise">
+                                    <i class="fas fa-plus"></i> Add Exercise
+                                </button>
+                            </div>
+                            <div class="exercise-list" id="exercise-list">
+                                <div class="empty-state">
+                                    <i class="fas fa-dumbbell"></i>
+                                    <p>No exercises logged yet</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Water Tracker Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-tint"></i> Water Tracker</h3>
+                            <p>Stay hydrated throughout the day</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="water-display">
+                                <div class="water-icon">
+                                    <i class="fas fa-tint"></i>
+                                </div>
+                                <div class="water-amount" id="water-amount">0ml</div>
+                                <div class="water-goal">of 2000ml goal</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="water-progress"></div>
+                                </div>
+                                <div class="water-percentage" id="water-percentage">0%</div>
+                            </div>
+                            <div class="water-controls">
+                                <button class="btn btn-primary" id="add-water">
+                                    <i class="fas fa-plus"></i> Add 250ml
+                                </button>
+                                <button class="btn btn-secondary" id="remove-water">
+                                    <i class="fas fa-minus"></i> Remove 250ml
+                                </button>
+                            </div>
+                            <div class="water-quick-add">
+                                <button class="btn btn-small" onclick="addWater(500)">+500ml</button>
+                                <button class="btn btn-small" onclick="addWater(100)">+100ml</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calorie Calculator Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calculator"></i> Calorie Calculator</h3>
+                            <p>AI-powered nutrition tracking</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="chat-container">
+                                <div class="chat-messages" id="calorie-chat">
+                                    <div class="message bot-message">
+                                        <div class="message-avatar bot-avatar">
+                                            <i class="fas fa-apple-alt"></i>
+                                        </div>
+                                        <div class="message-content">
+                                            Welcome to your Nutrition Sanctuary! Tell me what you ate and I'll help calculate the calories. Try 'I had 1 apple' or 'chicken breast 100g'.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chat-input">
+                                    <input type="text" id="calorie-input" placeholder="Tell me what you ate...">
+                                    <button class="btn btn-primary" id="calorie-send">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Health Reminders Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-pills"></i> Health Reminders</h3>
+                            <p>Medication and healthcare reminders</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="reminder-form">
+                                <select id="reminder-type">
+                                    <option value="medication">Medication</option>
+                                    <option value="appointment">Appointment</option>
+                                    <option value="checkup">Health Checkup</option>
+                                </select>
+                                <input type="text" id="reminder-title" placeholder="Reminder title">
+                                <input type="time" id="reminder-time">
+                                <button class="btn btn-primary" id="add-reminder">
+                                    <i class="fas fa-plus"></i> Add Reminder
+                                </button>
+                            </div>
+                            <div class="reminders-list" id="reminders-list">
+                                <div class="reminder-item">
+                                    <div class="reminder-info">
+                                        <div class="reminder-badge medication">
+                                            <i class="fas fa-pills"></i> Medication
+                                        </div>
+                                        <div class="reminder-title">Vitamin D</div>
+                                        <div class="reminder-time">08:00 - Daily</div>
+                                    </div>
+                                    <button class="btn btn-small btn-success">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
