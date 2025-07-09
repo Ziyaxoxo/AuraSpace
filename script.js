@@ -1,3 +1,99 @@
+// Header scroll functionality
+let lastScrollTop = 0
+let scrollTimeout
+
+function handleScroll() {
+  const header = document.querySelector(".header")
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop
+
+  // Add scrolled class when scrolled down
+  if (currentScroll > 50) {
+    header.classList.add("scrolled")
+  } else {
+    header.classList.remove("scrolled")
+  }
+
+  // Hide/show header based on scroll direction
+  if (currentScroll > lastScrollTop && currentScroll > 100) {
+    // Scrolling down & past threshold
+    header.classList.add("hidden")
+  } else {
+    // Scrolling up
+    header.classList.remove("hidden")
+  }
+
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll
+
+  // Clear timeout and set new one
+  clearTimeout(scrollTimeout)
+  scrollTimeout = setTimeout(() => {
+    // Always show header when scrolling stops
+    header.classList.remove("hidden")
+  }, 150)
+}
+
+// Throttled scroll event
+let ticking = false
+function requestTick() {
+  if (!ticking) {
+    requestAnimationFrame(handleScroll)
+    ticking = true
+    setTimeout(() => {
+      ticking = false
+    }, 10)
+  }
+}
+
+// Add scroll event listener
+window.addEventListener("scroll", requestTick, { passive: true })
+
+// Touch events for mobile
+let touchStartY = 0
+let touchEndY = 0
+
+document.addEventListener(
+  "touchstart",
+  (e) => {
+    touchStartY = e.changedTouches[0].screenY
+  },
+  { passive: true },
+)
+
+document.addEventListener(
+  "touchend",
+  (e) => {
+    touchEndY = e.changedTouches[0].screenY
+    handleSwipe()
+  },
+  { passive: true },
+)
+
+function handleSwipe() {
+  const header = document.querySelector(".header")
+  const swipeThreshold = 50
+
+  if (touchStartY - touchEndY > swipeThreshold) {
+    // Swiping up (scrolling down)
+    if (window.pageYOffset > 100) {
+      header.classList.add("hidden")
+    }
+  } else if (touchEndY - touchStartY > swipeThreshold) {
+    // Swiping down (scrolling up)
+    header.classList.remove("hidden")
+  }
+}
+
+// Show header when hovering near top of screen
+document.addEventListener(
+  "mousemove",
+  (e) => {
+    const header = document.querySelector(".header")
+    if (e.clientY < 100) {
+      header.classList.remove("hidden")
+    }
+  },
+  { passive: true },
+)
 // Global Variables
 let timerInterval
 let timeLeft = 25 * 60 // 25 minutes in seconds
